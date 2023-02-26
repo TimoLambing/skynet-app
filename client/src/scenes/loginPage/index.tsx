@@ -7,6 +7,7 @@ function LoginPage() {
   const theme = useTheme()
   const navigate = useNavigate()
   const isNonMobileScreens = useMediaQuery('(min-width: 1000px)')
+  const primaryLight = theme.palette.primary.light
 
   return (
     <Box>
@@ -22,6 +23,13 @@ function LoginPage() {
           fontWeight="bold"
           fontSize="clamp(1rem, 1.88rem, 2.25rem)"
           color="primary"
+          onClick={() => navigate('/')}
+          sx={{
+            '&:hover': {
+              color: primaryLight,
+              cursor: 'pointer',
+            },
+          }}
         >
           SKY
         </Typography>
@@ -29,6 +37,13 @@ function LoginPage() {
           fontWeight="bold"
           fontSize="clamp(1rem, 1.88rem, 2.25rem)"
           color="neutral.dark"
+          onClick={() => navigate('/')}
+          sx={{
+            '&:hover': {
+              color: primaryLight,
+              cursor: 'pointer',
+            },
+          }}
         >
           NET
         </Typography>
