@@ -7,6 +7,7 @@ import ContactFormWidget from '@/scenes/widgets/ContactFormWidget'
 import LandingContentWidget from '@/scenes/widgets/LandingContentWidget'
 import PartnersWidget from '@/scenes/widgets/PartnersWidget'
 import TrustNumbersWidget from '@/scenes/widgets/TrustNumbersWidget'
+import YouTubeWidget from '@/scenes/widgets/YouTubeWidget'
 
 function LandingBody() {
   const isNonMobileScreens = useMediaQuery('(min-width:1000px)')
@@ -21,7 +22,12 @@ function LandingBody() {
       justifyContent="space-between"
     >
       <Box flexBasis={isNonMobileScreens ? '68%' : undefined}>
-        <LandingContentWidget />
+        <Box paddingBottom="2rem">
+          <LandingContentWidget />
+        </Box>
+        <Box>
+          <YouTubeWidget />
+        </Box>
       </Box>
       <Box
         flexBasis={isNonMobileScreens ? '26%' : undefined}

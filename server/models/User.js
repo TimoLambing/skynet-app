@@ -6,9 +6,9 @@ const UserSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: true,
-      min: 2,
-      max: 50,
+    },
+    companyName: {
+      type: String,
     },
     lastName: {
       type: String,
@@ -35,24 +35,17 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
-    companyName: {
-      type: String,
-      required: true,
-    },
-    industry: {
-      type: String,
-      required: true,
+    corporate: {
+      type: Boolean,
+      default: false,
     },
     location: String,
     occupation: String,
-    userType: String,
-    companyName: String,
     industry: String,
     viewedProfile: Number,
     impressions: Number,
   },
   { timestamps: true }
-  /* This line of code is adding two fields to the schema, createdAt and updatedAt. The type assigned to these fields is Date. Mongoose adds them to your schema*/
 );
 
 const User = mongoose.model("User", UserSchema);
