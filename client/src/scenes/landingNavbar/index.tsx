@@ -1,6 +1,5 @@
-/** @format */
-
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-scroll'
 import {
   Box,
   IconButton,
@@ -12,33 +11,18 @@ import {
   useTheme,
   useMediaQuery,
   InputLabel,
-  FormHelperText,
   Button,
   Stack,
-  Grid,
 } from '@mui/material'
-import {
-  Search,
-  Message,
-  DarkMode,
-  LightMode,
-  Notifications,
-  Help,
-  Menu,
-  Close,
-} from '@mui/icons-material'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, Link } from 'react-router-dom'
+import { DarkMode, LightMode, Menu, Close } from '@mui/icons-material'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
 import ReactGA from 'react-ga'
 import '/node_modules/flag-icons/css/flag-icons.min.css'
-import { ReactSVG } from 'react-svg'
-import { ThemeContext } from 'styled-components'
-import { login } from '@/scenes/loginPage'
 import FlexBetween from '@/components/FlexBetween'
-import { setMode, setLogout, setLogin } from '@/state/index.js'
-import { ReactComponent as SkynetLogo } from '@/assets/512.svg'
+import { setMode } from '@/state/index.js'
 import InstallPrompt from '@/components/InstallPrompt'
 
 const languages = [
@@ -86,9 +70,6 @@ function LandingNavbar() {
 
   const { t } = useTranslation()
   const theme = useTheme()
-  const { body } = document
-  const primaryColor = theme.palette.primary.main
-  const currentTheme = useContext(ThemeContext)
 
   const [language, setLanguage] = React.useState(
     localStorage.getItem('language') || navigator.language
@@ -105,15 +86,12 @@ function LandingNavbar() {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const user = useSelector((state) => state.user)
   const isNonMobileScreens = useMediaQuery('(min-width: 1000px)')
 
   const neutralLight = theme.palette.neutral.light
   const { dark } = theme.palette.neutral
-  const background = theme.palette.primary.darkMain
   const primaryLight = theme.palette.primary.light
   const { alt } = theme.palette.background
-  const border = theme.palette.neutral.main
 
   const fullName = 'John Doe'
   //  `${user.firstName} ${user.lastName}`;
@@ -163,15 +141,30 @@ function LandingNavbar() {
             <FlexBetween padding="0 1rem">
               {/* MENU BAR */}
               <Stack direction="row" spacing={2}>
-                <MenuItem style={{ whiteSpace: 'nowrap' }} href="#text-buttons">
-                  {t('menu_link_services')}
-                </MenuItem>
-                <MenuItem style={{ whiteSpace: 'nowrap' }} href="#text-buttons">
-                  {t('link_apply')}
-                </MenuItem>
-                <MenuItem style={{ whiteSpace: 'nowrap' }} href="#text-buttons">
-                  {t('link_contact')}
-                </MenuItem>
+                <Link to="service" smooth={true} duration={500}>
+                  <MenuItem
+                    style={{ whiteSpace: 'nowrap' }}
+                    href="#text-buttons"
+                  >
+                    {t('menu_link_services')}
+                  </MenuItem>
+                </Link>
+                <Link to="job" smooth={true} duration={500}>
+                  <MenuItem
+                    style={{ whiteSpace: 'nowrap' }}
+                    href="#text-buttons"
+                  >
+                    {t('link_apply')}
+                  </MenuItem>
+                </Link>
+                <Link to="contact" smooth={true} duration={500}>
+                  <MenuItem
+                    style={{ whiteSpace: 'nowrap' }}
+                    href="#text-buttons"
+                  >
+                    {t('link_contact')}
+                  </MenuItem>
+                </Link>
               </Stack>
             </FlexBetween>
           )}
@@ -273,16 +266,31 @@ function LandingNavbar() {
               </IconButton>
               <FlexBetween>
                 {/* MENU BAR */}
-                <Stack>
-                  <Button style={{ whiteSpace: 'nowrap' }} href="#text-buttons">
-                    OUR SERVICES
-                  </Button>
-                  <Button style={{ whiteSpace: 'nowrap' }} href="#text-buttons">
-                    APPLY FOR A JOB
-                  </Button>
-                  <Button style={{ whiteSpace: 'nowrap' }} href="#text-buttons">
-                    CONTACT
-                  </Button>
+                <Stack spacing={2}>
+                  <Link to="service" smooth={true} duration={500}>
+                    <MenuItem
+                      style={{ whiteSpace: 'nowrap' }}
+                      href="#text-buttons"
+                    >
+                      {t('menu_link_services')}
+                    </MenuItem>
+                  </Link>
+                  <Link to="job" smooth={true} duration={500}>
+                    <MenuItem
+                      style={{ whiteSpace: 'nowrap' }}
+                      href="#text-buttons"
+                    >
+                      {t('link_apply')}
+                    </MenuItem>
+                  </Link>
+                  <Link to="contact" smooth={true} duration={500}>
+                    <MenuItem
+                      style={{ whiteSpace: 'nowrap' }}
+                      href="#text-buttons"
+                    >
+                      {t('link_contact')}
+                    </MenuItem>
+                  </Link>
                 </Stack>
               </FlexBetween>
 

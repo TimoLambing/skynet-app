@@ -34,7 +34,7 @@ function PartnersWidget() {
       <Divider />
 
       {/* SECOND ROW */}
-      <Box p="1rem 0">
+      <Box p="1rem 0" className="grayscale">
         <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
           <Harju width="100%" />
         </Box>
@@ -43,7 +43,7 @@ function PartnersWidget() {
       <Divider />
 
       {/* THIRD ROW */}
-      <Box p="1rem 0">
+      <Box p="1rem 0" className="grayscale">
         <Box
           display="flex"
           alignItems="center"

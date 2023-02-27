@@ -16,6 +16,10 @@ body,
   width: 100%;
 }
 
+.grayscale {
+  filter: grayscale(70%);
+}
+
 .taust {
   background-image: url("../assets/taust2.webp") !important;
   background-repeat: no-repeat !important;
