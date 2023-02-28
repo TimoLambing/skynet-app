@@ -40,7 +40,7 @@ function YouTubeWidget() {
           justifyContent="center"
           textAlign="center"
         >
-          <YouTubePlayer videoId="bvgPd14klGg" />
+          <YouTubePlayer videoId="_mrYRRmRNa8" />
         </Box>
       </Box>
     </WidgetWrapper>

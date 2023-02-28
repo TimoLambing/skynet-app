@@ -153,6 +153,9 @@ function CorporateServiceWidget() {
             component="h2"
             fontWeight="bold"
             sx={{ mb: 2, fontSize: '1.2rem' }}
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
           >
             Sound's good enough? Lets get started!
           </Typography>

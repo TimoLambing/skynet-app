@@ -2,6 +2,7 @@ import { Box, Divider, Typography, useTheme, Button } from '@mui/material'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import i18next from 'i18next'
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined'
 import BrowserUpdatedOutlinedIcon from '@mui/icons-material/BrowserUpdatedOutlined'
@@ -21,6 +22,7 @@ function JobServiceWidget() {
   const { t } = useTranslation()
 
   const { palette } = useTheme()
+  const navigate = useNavigate()
   const { medium } = palette.neutral
   const primary = palette.primary.main
   const { dark } = palette.neutral
@@ -151,6 +153,9 @@ function JobServiceWidget() {
             component="h2"
             fontWeight="bold"
             sx={{ mb: 2, fontSize: '1.2rem' }}
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
           >
             Sound's good enough? Lets get started!
           </Typography>
@@ -166,7 +171,11 @@ function JobServiceWidget() {
             justifyContent="center"
             gap="1rem"
           >
-            <Button variant="contained" size="large">
+            <Button
+              variant="contained"
+              size="large"
+              onClick={() => navigate('/login')}
+            >
               Register and Download the app
             </Button>
           </Box>

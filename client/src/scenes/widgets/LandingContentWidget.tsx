@@ -8,6 +8,7 @@ import {
   Grid,
 } from '@mui/material'
 import { useState } from 'react'
+import { Link } from 'react-scroll'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import i18next from 'i18next'
@@ -74,12 +75,7 @@ function LandingContentWidget() {
           </Box>
           <Box display="flex" alignItems="center" sx={{ mb: 2 }} gap="1rem">
             <Feather />
-            <Typography
-              variant="h3"
-              component="h3"
-              color={medium}
-              sx={{ fontSize: '1rem' }}
-            >
+            <Typography variant="h3" component="h3" color={medium}>
               {t('home_subheading3')}
             </Typography>
           </Box>
@@ -143,12 +139,16 @@ function LandingContentWidget() {
           justifyContent="center"
           gap="1rem"
         >
-          <Button variant="contained" size="large">
-            {t('home_button1')}
-          </Button>
-          <Button variant="contained" size="large">
-            {t('home_button2')}
-          </Button>
+          <Link to="service" smooth={true} duration={500}>
+            <Button variant="contained" size="large">
+              {t('home_button1')}
+            </Button>
+          </Link>
+          <Link to="job" smooth={true} duration={500}>
+            <Button variant="contained" size="large">
+              {t('home_button2')}
+            </Button>
+          </Link>
         </Box>
       </Box>
     </WidgetWrapper>

@@ -35,8 +35,15 @@ function PartnersWidget() {
 
       {/* SECOND ROW */}
       <Box p="1rem 0" className="grayscale">
-        <Box display="flex" alignItems="center" gap="1rem" mb="0.5rem">
-          <Harju width="100%" />
+        <Box
+          display="flex"
+          alignItems="center"
+          alignItems="center"
+          justifyContent="center"
+          gap="1rem"
+          mb="0.5rem"
+        >
+          <Harju width="80%" />
         </Box>
       </Box>
 
@@ -51,7 +58,7 @@ function PartnersWidget() {
           gap="1rem"
           mb="0.5rem"
         >
-          <Harmet width="35%" />
+          <Harmet width="25%" />
         </Box>
       </Box>
 
@@ -65,7 +72,7 @@ function PartnersWidget() {
           justifyContent="center"
           gap="1rem"
         >
-          <h3>RANDERS OÜ</h3>
+          <h4>RANDERS OÜ</h4>
         </Box>
       </Box>
 
