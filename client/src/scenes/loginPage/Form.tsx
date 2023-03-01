@@ -26,13 +26,13 @@ const registerSchema = yup.object().shape({
   location: yup.string().required('required'),
   occupation: yup.string().required('required'),
   picture: yup.string().required('required'),
-  corporate: yup.boolean().required('required'),
-  companyName: yup.string().when('corporate', {
-    is: true,
+  userType: yup.string().oneOf(['corporate', 'talent']).required('required'),
+  companyName: yup.string().when('userType', {
+    is: 'corporate',
     then: yup.string().required('required'),
   }),
-  industry: yup.string().when('corporate', {
-    is: true,
+  industry: yup.string().when('userType', {
+    is: 'corporate',
     then: yup.string().required('required'),
   }),
 })
@@ -50,7 +50,7 @@ const initialValuesRegister = {
   location: '',
   occupation: '',
   picture: '',
-  corporate: 'false',
+  userType: 'talent',
   companyName: '',
   industry: '',
 }
@@ -62,21 +62,28 @@ const initialValuesLogin = {
 
 function Form() {
   const [pageType, setPageType] = useState('login')
-  const [corporate, setCorporate] = useState(false)
+  const [userType, setUserType] = useState('talent')
   const { palette } = useTheme()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const isNonMobile = useMediaQuery('(min-width:600px)')
   const isLogin = pageType === 'login'
   const isRegister = pageType === 'register'
+  const isCorporate = userType === 'corporate'
 
   const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
     const formData = new FormData()
     for (const value in values) {
+      if (value == 'userType') {
+        values[value] = userType
+      }
       formData.append(value, values[value])
     }
+    //corporate
+    formData.append('corporate', (userType === 'corporate').toString())
     formData.append('picturePath', values.picture.name)
+    //formData.append('userType', userType)
 
     const savedUserResponse = await fetch(
       'http://localhost:3001/auth/register',
@@ -117,8 +124,13 @@ function Form() {
     if (isRegister) await register(values, onSubmitProps)
   }
 
+  const handleUserTypeChange = (event, newType) => {
+    setUserType(newType)
+  }
+
   return (
     <Formik
+      enableReinitialize={true}
       onSubmit={handleFormSubmit}
       initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
       validationSchema={isLogin ? loginSchema : registerSchema}
@@ -128,9 +140,9 @@ function Form() {
         errors,
         touched,
         handleBlur,
-        handleChange,
         handleSubmit,
         setFieldValue,
+        handleChange,
         resetForm,
       }) => (
         <form onSubmit={handleSubmit}>
@@ -153,15 +165,12 @@ function Form() {
                 >
                   <ToggleButtonGroup
                     color="primary"
+                    value={userType}
                     exclusive
+                    onChange={handleUserTypeChange}
                     aria-label="User Type"
                     variant="small"
                     size="small"
-                    value={corporate ? 'corporate' : 'talent'}
-                    onChange={(event, newValue) => {
-                      setCorporate(newValue === 'corporate')
-                      setFieldValue('corporate', newValue === 'corporate')
-                    }}
                   >
                     <ToggleButton value="corporate" name="corporate">
                       Corporate
@@ -171,17 +180,27 @@ function Form() {
                     </ToggleButton>
                   </ToggleButtonGroup>
                 </Box>
-                {corporate && (
+                {isCorporate && (
                   <>
                     <TextField
                       label="Company Name"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      value={values.companyName}
                       name="companyName"
-                      sx={{ gridColumn: 'span 2' }}
+                      error={Boolean(touched.companyName && errors.companyName)}
+                      helperText={touched.companyName && errors.companyName}
+                      sx={{ gridColumn: 'span 4' }}
                     />
                     <TextField
                       label="Industry"
+                      onBlur={handleBlur}
+                      onChange={handleChange}
+                      value={values.industry}
                       name="industry"
-                      sx={{ gridColumn: 'span 2' }}
+                      error={Boolean(touched.industry && errors.industry)}
+                      helperText={touched.industry && errors.industry}
+                      sx={{ gridColumn: 'span 4' }}
                     />
                   </>
                 )}
