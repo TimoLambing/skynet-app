@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import {
   Box,
   Button,
@@ -12,7 +13,6 @@ import {
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import { Formik } from 'formik'
 import * as yup from 'yup'
-import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import Dropzone from 'react-dropzone'
 import { setLogin } from '@/state'
@@ -23,6 +23,10 @@ const registerSchema = yup.object().shape({
   lastName: yup.string().required('required'),
   email: yup.string().email('invalid email').required('required'),
   password: yup.string().required('required'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .required('required'),
   location: yup.string().required('required'),
   occupation: yup.string().required('required'),
   picture: yup.string().required('required'),
@@ -47,6 +51,7 @@ const initialValuesRegister = {
   lastName: '',
   email: '',
   password: '',
+  confirmPassword: '',
   location: '',
   occupation: '',
   picture: '',
@@ -80,10 +85,10 @@ function Form() {
       }
       formData.append(value, values[value])
     }
-    //corporate
+    // corporate
     formData.append('corporate', (userType === 'corporate').toString())
     formData.append('picturePath', values.picture.name)
-    //formData.append('userType', userType)
+    // formData.append('userType', userType)
 
     const savedUserResponse = await fetch(
       'http://localhost:3001/auth/register',
@@ -130,7 +135,7 @@ function Form() {
 
   return (
     <Formik
-      enableReinitialize={true}
+      enableReinitialize
       onSubmit={handleFormSubmit}
       initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
       validationSchema={isLogin ? loginSchema : registerSchema}
@@ -305,6 +310,22 @@ function Form() {
               helperText={touched.password && errors.password}
               sx={{ gridColumn: 'span 4' }}
             />
+            {pageType === 'register' && (
+              <TextField
+                fullWidth
+                type="password"
+                name="confirmPassword"
+                label="Confirm Password"
+                value={values.confirmPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={
+                  touched.confirmPassword && Boolean(errors.confirmPassword)
+                }
+                helperText={touched.confirmPassword && errors.confirmPassword}
+                sx={{ gridColumn: 'span 4' }}
+              />
+            )}
           </Box>
 
           {/* BUTTONS */}

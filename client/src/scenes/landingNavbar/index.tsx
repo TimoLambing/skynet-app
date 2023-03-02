@@ -141,7 +141,7 @@ function LandingNavbar() {
             <FlexBetween padding="0 1rem">
               {/* MENU BAR */}
               <Stack direction="row" spacing={2}>
-                <Link to="service" smooth={true} duration={500}>
+                <Link to="service" smooth duration={500}>
                   <MenuItem
                     style={{ whiteSpace: 'nowrap' }}
                     href="#text-buttons"
@@ -149,7 +149,7 @@ function LandingNavbar() {
                     {t('menu_link_services')}
                   </MenuItem>
                 </Link>
-                <Link to="job" smooth={true} duration={500}>
+                <Link to="job" smooth duration={500}>
                   <MenuItem
                     style={{ whiteSpace: 'nowrap' }}
                     href="#text-buttons"
@@ -157,7 +157,7 @@ function LandingNavbar() {
                     {t('link_apply')}
                   </MenuItem>
                 </Link>
-                <Link to="contact" smooth={true} duration={500}>
+                <Link to="contact" smooth duration={500}>
                   <MenuItem
                     style={{ whiteSpace: 'nowrap' }}
                     href="#text-buttons"
@@ -267,7 +267,7 @@ function LandingNavbar() {
               <FlexBetween>
                 {/* MENU BAR */}
                 <Stack spacing={2}>
-                  <Link to="service" smooth={true} duration={500}>
+                  <Link to="service" smooth duration={500}>
                     <MenuItem
                       style={{ whiteSpace: 'nowrap' }}
                       href="#text-buttons"
@@ -275,7 +275,7 @@ function LandingNavbar() {
                       {t('menu_link_services')}
                     </MenuItem>
                   </Link>
-                  <Link to="job" smooth={true} duration={500}>
+                  <Link to="job" smooth duration={500}>
                     <MenuItem
                       style={{ whiteSpace: 'nowrap' }}
                       href="#text-buttons"
@@ -283,7 +283,7 @@ function LandingNavbar() {
                       {t('link_apply')}
                     </MenuItem>
                   </Link>
-                  <Link to="contact" smooth={true} duration={500}>
+                  <Link to="contact" smooth duration={500}>
                     <MenuItem
                       style={{ whiteSpace: 'nowrap' }}
                       href="#text-buttons"

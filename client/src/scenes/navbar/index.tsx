@@ -53,45 +53,40 @@ function Navbar() {
       <FlexBetween padding="0 1rem" backgroundColor={alt}>
         <FlexBetween gap="1.75rem">
           <Box sx={{ padding: 1 }}>
-            <Grid display="flex" alignItems="center">
-              <Box
-                alignItems="center"
-                display="flex"
-                justifyContent="center"
-                sx={{ paddingTop: 1 }}
+            <Box
+              display="flex"
+              justifyContent="center"
+              sx={{ paddingTop: 0.3 }}
+            >
+              <Typography
+                fontWeight="bold"
+                fontSize="clamp(1rem, 1.88rem, 2.25rem)"
+                color="primary"
+                onClick={() => navigate('/home')}
+                sx={{
+                  '&:hover': {
+                    color: primaryLight,
+                    cursor: 'pointer',
+                  },
+                }}
               >
-                <Link to="/home">
-                  <SkynetLogo
-                    style={{
-                      fill: theme.palette.neutral.dark,
-                      stroke: theme.palette.neutral.dark,
-                      width: '45px',
-                    }}
-                    onClick={() => navigate('/')}
-                  />
-                </Link>
-              </Box>
-              <Box
-                display="flex"
-                justifyContent="center"
-                sx={{ paddingTop: 0.4 }}
+                SKY
+              </Typography>
+              <Typography
+                fontWeight="bold"
+                fontSize="clamp(1rem, 1.88rem, 2.25rem)"
+                color="neutral.dark"
+                onClick={() => navigate('/home')}
+                sx={{
+                  '&:hover': {
+                    color: primaryLight,
+                    cursor: 'pointer',
+                  },
+                }}
               >
-                <Typography
-                  fontWeight="bold"
-                  fontSize="clamp(1rem, 1.95rem, 2.25rem)"
-                  color="neutral.dark"
-                  onClick={() => navigate('/home')}
-                  sx={{
-                    '&:hover': {
-                      color: primaryLight,
-                      cursor: 'pointer',
-                    },
-                  }}
-                >
-                  KYNET
-                </Typography>
-              </Box>
-            </Grid>
+                NET
+              </Typography>
+            </Box>
           </Box>
 
           {isNonMobileScreens && (
