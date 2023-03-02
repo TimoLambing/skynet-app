@@ -171,7 +171,11 @@ function CorporateServiceWidget() {
             justifyContent="center"
             gap="1rem"
           >
-            <Button variant="contained" size="large">
+            <Button
+              variant="contained"
+              size="large"
+              onClick={() => navigate('/login?corporate=true')}
+            >
               Register and Download the app
             </Button>
           </Box>
